@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import style from './StyleSheet.css.js';
+import day from './date.js';
 
 const Home = ({ navigation }) => {
   return (
     <View style={style.container}>
-      <Text>Hi "user", today de menu is, "Monday."</Text>
+      <Text>Hi "user", today de menu is, {day}</Text>
       {/* Button to send to page Breakfast */}
       <Button
         color="blue"

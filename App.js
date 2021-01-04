@@ -70,11 +70,9 @@ export default function App() {
             let iconName;
 
             if (route.name === 'HomeStack') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+              iconName = focused ? 'settings-sharp' : 'settings-outline';
             } else if (route.name === 'Settings') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused ? 'settings-sharp' : 'settings-outline';
             }
 
             // You can return any component that you like here!
@@ -82,16 +80,13 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: 'pink',
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="HomeStackScreen" component={HomeStackScreen} />
-        <Tab.Screen name="MyMenuStackScreen" component={MyMenuStackScreen} />
-        <Tab.Screen
-          name="SettingsStackScreen"
-          component={SettingsStackScreen}
-        />
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="MyMenu" component={MyMenuStackScreen} />
+        <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
