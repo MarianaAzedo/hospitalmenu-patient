@@ -19,7 +19,7 @@ const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator initialRouteName="Home">
       <HomeStack.Screen
-        name="oi"
+        name="Hospital Menu"
         component={Home}
         options={{ headerShown: false }}
       />
@@ -69,10 +69,12 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'HomeStack') {
-              iconName = focused ? 'settings-sharp' : 'settings-outline';
+            if (route.name === 'Home') {
+              iconName = focused ? 'home-sharp' : 'home-outline';
             } else if (route.name === 'Settings') {
-              iconName = focused ? 'settings-sharp' : 'settings-outline';
+              iconName = focused ? 'cog-sharp' : 'cog-outline';
+            } else {
+              iconName = focused ? 'list-circle-sharp' : 'list-circle-outline';
             }
 
             // You can return any component that you like here!
