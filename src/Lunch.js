@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { List, RadioButton, Button } from 'react-native-paper';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { List, RadioButton, Button, TextInput } from 'react-native-paper';
 import day from './date.js';
+import style from './StyleSheet.css.js';
 
 const Lunch = () => {
   let [menu, setMenu] = useState('');
@@ -9,6 +10,8 @@ const Lunch = () => {
   let [maincourse, setMaincourse] = useState('');
   let [dessert, setDessert] = useState('');
   let [hotdrinks, setHotdrinks] = useState('');
+  let [comment, setComment] = useState('');
+  const [text, setText] = React.useState('');
 
   useEffect(() => {
     fetch(`http://0.0.0.0:3000/menu`)
@@ -18,7 +21,7 @@ const Lunch = () => {
 
   return (
     <View style={style.container}>
-      <View>
+      <ScrollView>
         {menu &&
           menu
             .filter((item) => item.description.includes(day + ' Lunch'))
@@ -26,7 +29,11 @@ const Lunch = () => {
               <View key={key}>
                 {/* Starter list */}
                 <List.AccordionGroup>
-                  <List.Accordion title="Starter Course" id={'item '}>
+                  <List.Accordion
+                    style={style.list}
+                    title="Starter Course"
+                    id={'item '}
+                  >
                     <RadioButton.Group
                       onValueChange={(startercourse) =>
                         setStartercourse(startercourse)
@@ -39,6 +46,7 @@ const Lunch = () => {
                             label={startercourseItem.name}
                             value={startercourseItem.name}
                             key={startercourseKey}
+                            color="#FF3366"
                           />
                         ),
                       )}
@@ -47,7 +55,11 @@ const Lunch = () => {
                 </List.AccordionGroup>
                 {/* Main Course list */}
                 <List.AccordionGroup>
-                  <List.Accordion title="Main Course" id={'item '}>
+                  <List.Accordion
+                    style={style.list}
+                    title="Main Course"
+                    id={'item '}
+                  >
                     <RadioButton.Group
                       onValueChange={(maincourse) => setMaincourse(maincourse)}
                       value={maincourse}
@@ -57,6 +69,7 @@ const Lunch = () => {
                           label={maincourseItem.name}
                           value={maincourseItem.name}
                           key={maincourseKey}
+                          color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
@@ -64,7 +77,11 @@ const Lunch = () => {
                 </List.AccordionGroup>
                 {/* Dessert list */}
                 <List.AccordionGroup>
-                  <List.Accordion title="Dessert" id={'item '}>
+                  <List.Accordion
+                    style={style.list}
+                    title="Dessert"
+                    id={'item '}
+                  >
                     <RadioButton.Group
                       onValueChange={(dessert) => setDessert(dessert)}
                       value={dessert}
@@ -74,6 +91,7 @@ const Lunch = () => {
                           label={dessertItem.name}
                           value={dessertItem.name}
                           key={dessertKey}
+                          color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
@@ -81,7 +99,11 @@ const Lunch = () => {
                 </List.AccordionGroup>
                 {/* Hot Drinks list */}
                 <List.AccordionGroup>
-                  <List.Accordion title="Hot Drinks" id={'item '}>
+                  <List.Accordion
+                    style={style.list}
+                    title="Hot Drinks"
+                    id={'item '}
+                  >
                     <RadioButton.Group
                       onValueChange={(hotdrinks) => setHotdrinks(hotdrinks)}
                       value={hotdrinks}
@@ -91,27 +113,32 @@ const Lunch = () => {
                           label={hotdrinksItem.name}
                           value={hotdrinksItem.name}
                           key={hotdrinksKey}
+                          color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
+                {/* Comment */}
+                <TextInput
+                  label="Comments"
+                  style={style.list}
+                  value={text}
+                  onChangeText={(text) => setText(text)}
+                />
                 {/* Button Save */}
-                <Button mode="contained">Save</Button>
+                <Button
+                  color="#FF3366"
+                  mode="contained"
+                  accessibilityLabel="button save"
+                >
+                  Save
+                </Button>
               </View>
             ))}
-      </View>
+      </ScrollView>
     </View>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default Lunch;

@@ -9,6 +9,7 @@ import Lunch from './src/Lunch';
 import Evening from './src/Evening';
 import MyMenu from './src/MyMenu';
 import Settings from './src/Settings';
+import style from './src/StyleSheet.css.js';
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createStackNavigator();
@@ -24,8 +25,12 @@ const HomeStackScreen = () => {
         options={{ headerShown: false }}
       />
       <HomeStack.Screen name="Breakfast" component={Breakfast} />
-      <HomeStack.Screen name="Lunch" component={Lunch} />
-      <HomeStack.Screen name="Evening" component={Evening} />
+      <HomeStack.Screen style={style.title2} name="Lunch" component={Lunch} />
+      <HomeStack.Screen
+        style={style.title2}
+        name="Evening"
+        component={Evening}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -72,22 +77,21 @@ export default function App() {
             if (route.name === 'Home') {
               iconName = focused ? 'home-sharp' : 'home-outline';
             } else if (route.name === 'Settings') {
-              iconName = focused ? 'cog-sharp' : 'cog-outline';
+              iconName = focused ? 'menu-sharp' : 'menu-outline';
             } else {
-              iconName = focused ? 'list-circle-sharp' : 'list-circle-outline';
+              iconName = focused ? 'restaurant-sharp' : 'restaurant-outline';
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'pink',
-          inactiveTintColor: 'gray',
+          activeTintColor: '#FF3366',
+          inactiveTintColor: '#828282',
         }}
       >
         <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="MyMenu" component={MyMenuStackScreen} />
+        <Tab.Screen name="Menu" component={MyMenuStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
