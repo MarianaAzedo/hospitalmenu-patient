@@ -33,6 +33,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Egg Dishes"
                     id={'item '}
                   >
@@ -55,6 +60,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Serve with"
                     id={'item '}
                   >
@@ -77,6 +87,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Starter Course"
                     id={'item '}
                   >
@@ -103,6 +118,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Main Course"
                     id={'item '}
                   >
@@ -125,6 +145,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Dessert"
                     id={'item '}
                   >
@@ -147,6 +172,11 @@ const Evening = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Hot Drinks"
                     id={'item '}
                   >
@@ -167,13 +197,14 @@ const Evening = () => {
                 </List.AccordionGroup>
                 {/* Comment */}
                 <TextInput
+                  style={style.comment}
                   label="Comments"
-                  style={style.list}
                   value={text}
                   onChangeText={(text) => setText(text)}
                 />
                 {/* Button Save */}
                 <Button
+                  style={style.button}
                   color="#FF3366"
                   mode="contained"
                   accessibilityLabel="button save"

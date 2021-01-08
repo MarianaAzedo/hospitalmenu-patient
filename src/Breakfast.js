@@ -24,7 +24,7 @@ const Breakfast = () => {
   return (
     <View style={style.container}>
       <ScrollView>
-        <Text style={style.title}>Please, fill this prior to tomorrow.</Text>
+        <Text style={style.text}>Please, fill this prior to tomorrow.</Text>
         {menu &&
           menu
             .filter((item) => item.description.includes('Breakfast'))
@@ -34,6 +34,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Juices"
                     id={'item '}
                   >
@@ -54,7 +59,16 @@ const Breakfast = () => {
                 </List.AccordionGroup>
                 {/*Fruit list */}
                 <List.AccordionGroup>
-                  <List.Accordion style={style.list} title="Fruit" id={'item '}>
+                  <List.Accordion
+                    style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
+                    title="Fruit"
+                    id={'item '}
+                  >
                     <RadioButton.Group
                       onValueChange={(fruit) => setFruit(fruit)}
                       value={fruit}
@@ -74,6 +88,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Cereals"
                     id={'item '}
                   >
@@ -96,6 +115,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Hot Breakfast"
                     id={'item '}
                   >
@@ -122,6 +146,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Breads"
                     id={'item '}
                   >
@@ -144,6 +173,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Spreads"
                     id={'item '}
                   >
@@ -166,6 +200,11 @@ const Breakfast = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Hot Drinks"
                     id={'item '}
                   >
@@ -186,13 +225,14 @@ const Breakfast = () => {
                 </List.AccordionGroup>
                 {/* Comment */}
                 <TextInput
-                  style={style.list}
+                  style={style.comment}
                   label="Comments"
                   value={text}
                   onChangeText={(text) => setText(text)}
                 />
                 {/* Button Save */}
                 <Button
+                  style={style.button}
                   color="#FF3366"
                   mode="contained"
                   accessibilityLabel="button save"

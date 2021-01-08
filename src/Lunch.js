@@ -31,6 +31,11 @@ const Lunch = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Starter Course"
                     id={'item '}
                   >
@@ -57,6 +62,11 @@ const Lunch = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Main Course"
                     id={'item '}
                   >
@@ -79,6 +89,11 @@ const Lunch = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Dessert"
                     id={'item '}
                   >
@@ -101,6 +116,11 @@ const Lunch = () => {
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
                     title="Hot Drinks"
                     id={'item '}
                   >
@@ -128,6 +148,7 @@ const Lunch = () => {
                 />
                 {/* Button Save */}
                 <Button
+                  style={style.button}
                   color="#FF3366"
                   mode="contained"
                   accessibilityLabel="button save"
