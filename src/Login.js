@@ -7,6 +7,12 @@ import style from './StyleSheet.css.js';
 // const [name, setName] = useState('');
 // const [password, setPassword] = useState('');
 
+// useEffect(() => {
+//   fetch(`http://0.0.0.0:3000/staff`)
+//     .then((response) => response.json())
+//     .then((json) => setName(json));
+// }, []);
+
 const Login = ({ navigation }) => {
   return (
     <View style={style.container}>
@@ -16,9 +22,9 @@ const Login = ({ navigation }) => {
       <View style={style.inputView}>
         <TextInput
           style={style.TextInput}
-          placeholder="Email."
+          placeholder="Name."
           placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(name) => setName(name)}
         />
       </View>
 

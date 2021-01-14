@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingVertical: 8,
     color: '#FF3366',
     textAlign: 'left',
-    fontSize: 25,
+    fontSize: 20,
     alignItems: 'flex-start',
     fontWeight: 'bold',
     flexDirection: 'row',
@@ -23,21 +23,27 @@ export default StyleSheet.create({
     paddingVertical: 8,
     color: '#333333',
     textAlign: 'left',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'normal',
   },
 
-  button: {
-    flex: 0.1,
-    padding: 20,
-    marginTop: 20,
-    borderRadius: 40,
-    fontSize: 18,
+  textbutton: {
+    color: 'white',
     fontWeight: 'bold',
+    fontSize: 18,
   },
+
+  button: {
+    padding: 20,
+    marginTop: 10,
+    borderRadius: 40,
+    textAlign: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FF3366',
+  },
+
   list: {
-    flex: 0.1,
-    padding: 10,
+    padding: 5,
     borderColor: '#C2C2C2',
     borderStyle: 'solid',
     borderWidth: 1,

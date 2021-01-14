@@ -3,13 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from '@react-navigation/stack';
-import { shouldUseActivityState, ActivityState } from 'react-native-screens';
-import Home from './src/Home';
-import Breakfast from './src/Breakfast';
-import Lunch from './src/Lunch';
-import Evening from './src/Evening';
-import MyMenu from './src/MyMenu';
-import Settings from './src/Settings';
+import Home from './src/tab-screens/Home';
+import Breakfast from './src/screens/Breakfast';
+import Lunch from './src/screens/Lunch';
+import Evening from './src/screens/Evening';
+import MyMenu from './src/tab-screens/MyMenu';
+import Settings from './src/tab-screens/Settings';
 import Login from './src/Login';
 import style from './src/StyleSheet.css.js';
 
@@ -26,7 +25,7 @@ const HomeStackScreen = () => {
         component={Home}
         options={{ headerShown: false }}
       />
-      <HomeStack.Screen name="Login" component={Login} />
+      {/* <HomeStack.Screen name="Login" component={Login} /> */}
       <HomeStack.Screen name="Breakfast" component={Breakfast} />
       <HomeStack.Screen style={style.title2} name="Lunch" component={Lunch} />
       <HomeStack.Screen

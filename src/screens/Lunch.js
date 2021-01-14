@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { List, RadioButton, Button, TextInput } from 'react-native-paper';
-import day from './date.js';
-import style from './StyleSheet.css.js';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { List, RadioButton } from 'react-native-paper';
+import day from '../services/date.js';
+import api from '../services/api';
+import style from '../StyleSheet.css.js';
 
 const Lunch = () => {
   let [menu, setMenu] = useState('');
@@ -10,11 +11,29 @@ const Lunch = () => {
   let [maincourse, setMaincourse] = useState('');
   let [dessert, setDessert] = useState('');
   let [hotdrinks, setHotdrinks] = useState('');
-  let [comment, setComment] = useState('');
   const [text, setText] = React.useState('');
 
+  //post method
+  const handleSubmit = () => {
+    api
+      .POST('/menuroom', {
+        lunch: {
+          startercourse,
+          maincourse,
+          dessert,
+          hotdrinks,
+        },
+      })
+      .then((response) => response.json())
+      .then((path) => {
+        console.log(path);
+      });
+  };
+
+  //get method
   useEffect(() => {
-    fetch(`http://0.0.0.0:3000/menu`)
+    api
+      .GET('/menu')
       .then((response) => response.json())
       .then((json) => setMenu(json));
   }, []);
@@ -27,7 +46,7 @@ const Lunch = () => {
             .filter((item) => item.description.includes(day + ' Lunch'))
             .map((item, key) => (
               <View key={key}>
-                {/* Starter list */}
+                {/* List Accordion Starter*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -39,6 +58,7 @@ const Lunch = () => {
                     title="Starter Course"
                     id={'item '}
                   >
+                    {/* Radio Button Starter*/}
                     <RadioButton.Group
                       onValueChange={(startercourse) =>
                         setStartercourse(startercourse)
@@ -58,7 +78,7 @@ const Lunch = () => {
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* Main Course list */}
+                {/* List Accordion Main Course*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -70,6 +90,7 @@ const Lunch = () => {
                     title="Main Course"
                     id={'item '}
                   >
+                    {/* Radio Button Main*/}
                     <RadioButton.Group
                       onValueChange={(maincourse) => setMaincourse(maincourse)}
                       value={maincourse}
@@ -97,6 +118,7 @@ const Lunch = () => {
                     title="Dessert"
                     id={'item '}
                   >
+                    {/* Radio Button Dessert*/}
                     <RadioButton.Group
                       onValueChange={(dessert) => setDessert(dessert)}
                       value={dessert}
@@ -112,7 +134,7 @@ const Lunch = () => {
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* Hot Drinks list */}
+                {/* List Accordion Hot Drinks*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -124,6 +146,7 @@ const Lunch = () => {
                     title="Hot Drinks"
                     id={'item '}
                   >
+                    {/* Radio Button HotDrinks*/}
                     <RadioButton.Group
                       onValueChange={(hotdrinks) => setHotdrinks(hotdrinks)}
                       value={hotdrinks}
@@ -139,22 +162,14 @@ const Lunch = () => {
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* Comment */}
-                <TextInput
-                  label="Comments"
-                  style={style.list}
-                  value={text}
-                  onChangeText={(text) => setText(text)}
-                />
-                {/* Button Save */}
-                <Button
+                {/* Button Save Submit*/}
+                <TouchableOpacity
+                  onPress={handleSubmit}
                   style={style.button}
-                  color="#FF3366"
-                  mode="contained"
-                  accessibilityLabel="button save"
+                  accessibilityLabel="button send"
                 >
-                  Save
-                </Button>
+                  <Text style={style.textbutton}>Send</Text>
+                </TouchableOpacity>
               </View>
             ))}
       </ScrollView>

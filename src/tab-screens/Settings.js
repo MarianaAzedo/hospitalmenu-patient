@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
-import style from './StyleSheet.css.js';
+import style from '../StyleSheet.css.js';
 
 const Settings = () => {
   return (
