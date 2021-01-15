@@ -6,12 +6,12 @@ import style from '../StyleSheet.css.js';
 import api from '../services/api';
 
 const MyMenu = () => {
-  let [menuroom, setMenuRoom] = useState('');
+  let [menuroom, setMenuRoom] = useState([]);
 
   //get method
   useEffect(() => {
     api
-      .GET('/menuroom', {
+      .GET('/menuroom/305/12345', {
         menu: [],
       })
       .then((response) => response.json())
@@ -21,20 +21,10 @@ const MyMenu = () => {
     <View style={style.container}>
       {menuroom &&
         menuroom
-          .filter((item) => item.menu.includes('Breakfast'))
+          //.filter((item) => item.menuroom.includes('Breakfast'))
           .map((item, key) => (
             <View key={key}>
-              {/* Breakfast list */}
-              <List
-                style={style.list}
-                titleStyle={{
-                  color: '#FF3366',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                }}
-                title="Breakfast"
-                id={'item '}
-              ></List>
+              <Text>{JSON.stringify(item)}</Text>
             </View>
           ))}
     </View>

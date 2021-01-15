@@ -5,7 +5,7 @@ import style from '../StyleSheet.css.js';
 
 const Settings = () => {
   return (
-    <View>
+    <View style={style.container}>
       {/* Button Logout */}
       <Button
         style={style.button}
