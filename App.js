@@ -13,19 +13,19 @@ import Login from './src/Login';
 import style from './src/StyleSheet.css.js';
 
 const Tab = createBottomTabNavigator();
+const LoginStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const MyMenuStack = createStackNavigator();
 
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator initialRouteName="Home">
+    <HomeStack.Navigator initialRouteName="Login">
       <HomeStack.Screen
         name="Hospital Menu"
         component={Home}
         options={{ headerShown: false }}
       />
-      {/* <HomeStack.Screen name="Login" component={Login} /> */}
       <HomeStack.Screen name="Breakfast" component={Breakfast} />
       <HomeStack.Screen style={style.title2} name="Lunch" component={Lunch} />
       <HomeStack.Screen
@@ -34,6 +34,14 @@ const HomeStackScreen = () => {
         component={Evening}
       />
     </HomeStack.Navigator>
+  );
+};
+
+const LoginStackScreen = () => {
+  return (
+    <LoginStack.Navigator initialRouteName="Login">
+      <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
   );
 };
 
@@ -71,7 +79,8 @@ export default function App() {
   //Navigations between Screens
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <LoginStackScreen />
+      {/*<Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -95,7 +104,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Menu" component={MyMenuStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator>*/}
     </NavigationContainer>
   );
 }

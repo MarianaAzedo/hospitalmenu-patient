@@ -6,27 +6,63 @@ import style from '../StyleSheet.css.js';
 import api from '../services/api';
 
 const MyMenu = () => {
-  let [menuroom, setMenuRoom] = useState([]);
+  const [menuroom, setMenuRoom] = useState([]);
 
   //get method
   useEffect(() => {
     api
-      .GET('/menuroom/305/12345', {
-        menu: [],
-      })
+      .GET('/menuroom/305/12345')
       .then((response) => response.json())
       .then((json) => setMenuRoom(json));
   }, []);
+
+  /*menuroom = {
+    _id,
+      userid,
+    roomid,
+    date,
+    menu: [
+      {
+        breakfast: {
+          ...
+        }
+      },
+      {
+        lunch: {
+          ...
+        }
+      },
+      {
+        evening: {
+          ...
+        }
+      }
+    ]
+  }*/
+
   return (
     <View style={style.container}>
       {menuroom &&
-        menuroom
-          //.filter((item) => item.menuroom.includes('Breakfast'))
-          .map((item, key) => (
-            <View key={key}>
-              <Text>{JSON.stringify(item)}</Text>
-            </View>
-          ))}
+        menuroom.map((item, key) => (
+          <View key={key}>
+            {item.menu.map((menu, index) => (
+              <View style={style.mymenucontainer}>
+                <Text style={style.title}>{Object.keys(menu)[0]}</Text>
+                {Object.values(menu).map((val) => (
+                  <Text>
+                    {Object.values(val)
+                      .filter(Boolean)
+                      .map((menuitem) => (
+                        <View style={style.mymenuitem}>
+                          <Text style={style.text}>{menuitem}</Text>
+                        </View>
+                      ))}
+                  </Text>
+                ))}
+              </View>
+            ))}
+          </View>
+        ))}
     </View>
   );
 };

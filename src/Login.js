@@ -3,17 +3,23 @@ import React, { accessibilityLabel, useState, useEffect } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import style from './StyleSheet.css.js';
+import api from './services/api';
 
-// const [name, setName] = useState('');
-// const [password, setPassword] = useState('');
+const Login = () => {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
-// useEffect(() => {
-//   fetch(`http://0.0.0.0:3000/staff`)
-//     .then((response) => response.json())
-//     .then((json) => setName(json));
-// }, []);
-
-const Login = ({ navigation }) => {
+  const authenticate = () => {
+    api
+      .POST('/authenticate', {
+        name,
+        password,
+      })
+      .then((response) => response.json())
+      .then((path) => {
+        console.log(path);
+      });
+  };
   return (
     <View style={style.container}>
       <Text style={style.title2}>Hospital Menu</Text>
@@ -43,15 +49,14 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity>
-        {/* Button Save */}
-        <Button
+        {/* Button Save Submit*/}
+        <TouchableOpacity
+          onPress={authenticate}
           style={style.button}
-          color="#FF3366"
-          mode="contained"
-          accessibilityLabel="button save"
+          accessibilityLabel="button send"
         >
-          Login
-        </Button>
+          <Text style={style.textbutton}>Login</Text>
+        </TouchableOpacity>
       </TouchableOpacity>
     </View>
   );

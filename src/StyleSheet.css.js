@@ -55,10 +55,10 @@ export default StyleSheet.create({
 
   inputView: {
     backgroundColor: '#C2C2C2',
-    alignItems: 'left',
-    color: '#525252',
+    alignItems: 'flex-start',
+    color: '#C2C2C2',
     fontSize: 18,
-    flex: 0.1,
+    flex: 1,
     padding: 10,
     marginTop: 20,
     borderRadius: 40,
@@ -80,5 +80,19 @@ export default StyleSheet.create({
     marginTop: 20,
     color: '#525252',
     fontSize: 16,
+  },
+
+  mymenucontainer: {
+    padding: 20,
+    borderWidth: 1,
+    marginBottom: 10,
+  },
+
+  mymenuitem: {
+    borderTopWidth: 1,
+    marginTop: 10,
+    borderColor: '#FF3366',
+    width: '100%',
+    paddingTop: 10,
   },
 });
