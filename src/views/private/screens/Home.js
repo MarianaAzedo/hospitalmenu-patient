@@ -1,14 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { accessibilityLabel, useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import style from '../StyleSheet.css.js';
-import day from '../services/date.js';
+import style from '../../../StyleSheet.css.js';
+import day from '../../../services/date.js';
+import { getUser } from '../../../services/users';
 
 const Home = ({ navigation }) => {
+  const [user, setUser] = useState({});
+  useEffect(() => getUser().then((userPromise) => setUser(userPromise)), []);
   return (
     <View style={style.container}>
       {/* trocar por user */}
-      <Text style={style.title}>Mariana,</Text>
+      <Text style={style.title}>{user.name}</Text>
       <Text style={style.text}>today the menu is,</Text>
       <Text style={style.title}>{day}</Text>
       {/* Button to send to page Breakfast */}

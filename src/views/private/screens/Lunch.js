@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { List, RadioButton } from 'react-native-paper';
-import day from '../services/date.js';
-import api from '../services/api';
-import style from '../StyleSheet.css.js';
+import day from '../../../services/date.js';
+import api from '../../../services/api';
+import style from '../../../StyleSheet.css.js';
+import { getUser } from '../../../services/users';
 
 const Lunch = () => {
-  let [menu, setMenu] = useState('');
   let [startercourse, setStartercourse] = useState('');
   let [maincourse, setMaincourse] = useState('');
   let [dessert, setDessert] = useState('');
   let [hotdrinks, setHotdrinks] = useState('');
-  const [text, setText] = React.useState('');
+  const [menu, setMenu] = React.useState('');
+  const [user, setUser] = useState({});
 
   //post method
   const handleSubmit = () => {
@@ -23,6 +24,8 @@ const Lunch = () => {
           dessert,
           hotdrinks,
         },
+        userid: user.name,
+        roomid: user.room,
       })
       .then((response) => response.json())
       .then((path) => {
@@ -36,6 +39,8 @@ const Lunch = () => {
       .GET('/menu')
       .then((response) => response.json())
       .then((json) => setMenu(json));
+
+    getUser().then((userPromise) => setUser(userPromise));
   }, []);
 
   return (

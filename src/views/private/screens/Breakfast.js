@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { List, RadioButton } from 'react-native-paper';
-import style from '../StyleSheet.css.js';
-import api from '../services/api';
-import day from '../services/date.js';
+import style from '../../../StyleSheet.css.js';
+import api from '../../../services/api';
+import { getUser } from '../../../services/users';
 
-const Evening = () => {
-  let [menu, setMenu] = useState('');
-  let [eggdishes, setEggdishes] = useState('');
-  let [servewith, setServewith] = useState('');
-  let [startercourse, setStartercourse] = useState('');
-  let [maincourse, setMaincourse] = useState('');
-  let [dessert, setDessert] = useState('');
+const Breakfast = () => {
+  let [juice, setJuice] = useState('');
+  let [fruit, setFruit] = useState('');
+  let [cereals, setCereals] = useState('');
+  let [hotbreakfast, setHotbreakfast] = useState('');
+  let [breads, setBreads] = useState('');
+  let [spreads, setSpreads] = useState('');
   let [hotdrinks, setHotdrinks] = useState('');
-  const [text, setText] = React.useState('');
+  const [menu, setMenu] = React.useState('');
+  const [user, setUser] = useState({});
 
   //post method
   const handleSubmit = () => {
     api
       .POST('/menuroom', {
-        evening: {
-          eggdishes,
-          servewith,
-          startercourse,
-          maincourse,
-          dessert,
+        breakfast: {
+          juice,
+          fruit,
+          cereals,
+          hotbreakfast,
+          breads,
+          spreads,
           hotdrinks,
         },
+        userid: user.name,
+        roomid: user.room,
       })
       .then((response) => response.json())
       .then((path) => {
@@ -40,18 +44,22 @@ const Evening = () => {
       .GET('/menu')
       .then((response) => response.json())
       .then((json) => setMenu(json));
+
+    getUser().then((userPromise) => setUser(userPromise));
   }, []);
 
   return (
     <View style={style.container}>
       <ScrollView>
+        {/* message */}
+        <Text style={style.text}>Please, fill this prior to tomorrow.</Text>
         {/* Calling rout from API */}
         {menu &&
           menu
-            .filter((item) => item.description.includes(day + ' Evening'))
+            .filter((item) => item.description.includes('Breakfast'))
             .map((item, key) => (
               <View key={key}>
-                {/* List Accordion Egg Dishes*/}
+                {/* List Accordion Juices*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -60,26 +68,54 @@ const Evening = () => {
                       fontSize: 18,
                       fontWeight: 'bold',
                     }}
-                    title="Egg Dishes"
+                    title="Juices"
                     id={'item '}
                   >
-                    {/* RadioButtonEggDishes*/}
+                    {/* Radio Button Juices*/}
                     <RadioButton.Group
-                      onValueChange={(eggdishes) => setEggdishes(eggdishes)}
-                      value={eggdishes}
+                      onValueChange={(juice) => setJuice(juice)}
+                      value={juice}
                     >
-                      {item.eggdishes.map((eggdishesItem, eggdishesKey) => (
+                      {item.juices.map((juiceItem, juiceKey) => (
                         <RadioButton.Item
-                          label={eggdishesItem.name}
-                          value={eggdishesItem.name}
-                          key={eggdishesKey}
+                          label={juiceItem.name}
+                          value={juiceItem.name}
+                          color="#FF3366"
+                          key={juiceKey}
+                        />
+                      ))}
+                    </RadioButton.Group>
+                  </List.Accordion>
+                </List.AccordionGroup>
+                {/* List Accordion Fruit*/}
+                <List.AccordionGroup>
+                  <List.Accordion
+                    style={style.list}
+                    titleStyle={{
+                      color: '#FF3366',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
+                    title="Fruit"
+                    id={'item '}
+                  >
+                    {/* Radio Button fruit*/}
+                    <RadioButton.Group
+                      onValueChange={(fruit) => setFruit(fruit)}
+                      value={fruit}
+                    >
+                      {item.fruit.map((fruitItem, fruitKey) => (
+                        <RadioButton.Item
+                          label={fruitItem.name}
+                          value={fruitItem.name}
+                          key={fruitKey}
                           color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* List Accordion Serve with*/}
+                {/* List Accordion Cereals*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -88,26 +124,26 @@ const Evening = () => {
                       fontSize: 18,
                       fontWeight: 'bold',
                     }}
-                    title="Serve with"
+                    title="Cereals"
                     id={'item '}
                   >
-                    {/* RadioButton Serve with*/}
+                    {/* Radio Button Cereals*/}
                     <RadioButton.Group
-                      onValueChange={(servewith) => setServewith(servewith)}
-                      value={servewith}
+                      onValueChange={(cereals) => setCereals(cereals)}
+                      value={cereals}
                     >
-                      {item.servewith.map((servewithItem, servewithKey) => (
+                      {item.cereals.map((cerealsItem, cerealsKey) => (
                         <RadioButton.Item
-                          label={servewithItem.name}
-                          value={servewithItem.name}
-                          key={servewithKey}
+                          label={cerealsItem.name}
+                          value={cerealsItem.name}
+                          key={cerealsKey}
                           color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* List Accordion Starter*/}
+                {/* List Accordion Hot Breakfast*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -116,22 +152,22 @@ const Evening = () => {
                       fontSize: 18,
                       fontWeight: 'bold',
                     }}
-                    title="Starter Course"
+                    title="Hot Breakfast"
                     id={'item '}
                   >
-                    {/* RadioButton Starter*/}
+                    {/* Radio Button Hot Breakfast*/}
                     <RadioButton.Group
-                      onValueChange={(startercourse) =>
-                        setStartercourse(startercourse)
+                      onValueChange={(hotbreakfast) =>
+                        setHotbreakfast(hotbreakfast)
                       }
-                      value={startercourse}
+                      value={hotbreakfast}
                     >
-                      {item.startercourse.map(
-                        (startercourseItem, startercourseKey) => (
+                      {item.hotbreakfast.map(
+                        (hotbreakfastItem, hotbreakfastKey) => (
                           <RadioButton.Item
-                            label={startercourseItem.name}
-                            value={startercourseItem.name}
-                            key={startercourseKey}
+                            label={hotbreakfastItem.name}
+                            value={hotbreakfastItem.name}
+                            key={hotbreakfastKey}
                             color="#FF3366"
                           />
                         ),
@@ -139,7 +175,7 @@ const Evening = () => {
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* List Accordion Main Course*/}
+                {/* List Accordion Breads*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -148,26 +184,26 @@ const Evening = () => {
                       fontSize: 18,
                       fontWeight: 'bold',
                     }}
-                    title="Main Course"
+                    title="Breads"
                     id={'item '}
                   >
-                    {/* RadioButton Main Course*/}
+                    {/* Radio Button Breads*/}
                     <RadioButton.Group
-                      onValueChange={(maincourse) => setMaincourse(maincourse)}
-                      value={maincourse}
+                      onValueChange={(breads) => setBreads(breads)}
+                      value={breads}
                     >
-                      {item.maincourse.map((maincourseItem, maincourseKey) => (
+                      {item.breads.map((breadsItem, breadsKey) => (
                         <RadioButton.Item
-                          label={maincourseItem.name}
-                          value={maincourseItem.name}
-                          key={maincourseKey}
+                          label={breadsItem.name}
+                          value={breadsItem.name}
+                          key={breadsKey}
                           color="#FF3366"
                         />
                       ))}
                     </RadioButton.Group>
                   </List.Accordion>
                 </List.AccordionGroup>
-                {/* List Accordion Dessert*/}
+                {/* List Accordion Spreads*/}
                 <List.AccordionGroup>
                   <List.Accordion
                     style={style.list}
@@ -176,19 +212,19 @@ const Evening = () => {
                       fontSize: 18,
                       fontWeight: 'bold',
                     }}
-                    title="Dessert"
+                    title="Spreads"
                     id={'item '}
                   >
-                    {/* List Accordion RadioButton Dessert*/}
+                    {/* Radio Button Spreads*/}
                     <RadioButton.Group
-                      onValueChange={(dessert) => setDessert(dessert)}
-                      value={dessert}
+                      onValueChange={(spreads) => setSpreads(spreads)}
+                      value={spreads}
                     >
-                      {item.dessert.map((dessertItem, dessertKey) => (
+                      {item.spreads.map((spreadsItem, spreadsKey) => (
                         <RadioButton.Item
-                          label={dessertItem.name}
-                          value={dessertItem.name}
-                          key={dessertKey}
+                          label={spreadsItem.name}
+                          value={spreadsItem.name}
+                          key={spreadsKey}
                           color="#FF3366"
                         />
                       ))}
@@ -207,7 +243,7 @@ const Evening = () => {
                     title="Hot Drinks"
                     id={'item '}
                   >
-                    {/* RadioButton Hot Drinks*/}
+                    {/* Radio Button Hot Drinks*/}
                     <RadioButton.Group
                       onValueChange={(hotdrinks) => setHotdrinks(hotdrinks)}
                       value={hotdrinks}
@@ -238,4 +274,4 @@ const Evening = () => {
   );
 };
 
-export default Evening;
+export default Breakfast;

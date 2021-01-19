@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { List, RadioButton } from 'react-native-paper';
-import day from '../services/date.js';
-import style from '../StyleSheet.css.js';
-import api from '../services/api';
+import day from '../../../services/date.js';
+import style from '../../../StyleSheet.css.js';
+import api from '../../../services/api';
 
 const MyMenu = () => {
   const [menuroom, setMenuRoom] = useState([]);
@@ -15,30 +15,6 @@ const MyMenu = () => {
       .then((response) => response.json())
       .then((json) => setMenuRoom(json));
   }, []);
-
-  /*menuroom = {
-    _id,
-      userid,
-    roomid,
-    date,
-    menu: [
-      {
-        breakfast: {
-          ...
-        }
-      },
-      {
-        lunch: {
-          ...
-        }
-      },
-      {
-        evening: {
-          ...
-        }
-      }
-    ]
-  }*/
 
   return (
     <View style={style.container}>

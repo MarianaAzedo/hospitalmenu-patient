@@ -55,18 +55,14 @@ export default StyleSheet.create({
 
   inputView: {
     backgroundColor: '#C2C2C2',
-    alignItems: 'flex-start',
     color: '#C2C2C2',
-    fontSize: 18,
-    flex: 1,
-    padding: 10,
-    marginTop: 20,
+    padding: 20,
+    marginTop: 10,
     borderRadius: 40,
   },
 
   TextInput: {
-    height: 50,
-    flex: 1,
+    width: '100%',
     padding: 5,
     marginLeft: 5,
     color: '#525252',

@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { accessibilityLabel, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-paper';
-import style from './StyleSheet.css.js';
-import api from './services/api';
+import style from '../../../StyleSheet.css.js';
+import api from '../../../services/api';
+import { storeDataUser } from '../../../services/users';
 
 const Login = () => {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('Alberto Ribeiro');
+  const [password, setPassword] = useState('pass1234');
 
   const authenticate = () => {
     api
@@ -16,8 +16,8 @@ const Login = () => {
         password,
       })
       .then((response) => response.json())
-      .then((path) => {
-        console.log(path);
+      .then((user) => {
+        if (user[0]) storeDataUser(user[0]);
       });
   };
   return (
