@@ -23,6 +23,7 @@ const HomeStackScreen = () => {
         component={Home}
         options={{ headerShown: false }}
       />
+
       <HomeStack.Screen name="Breakfast" component={Breakfast} />
       <HomeStack.Screen style={style.title2} name="Lunch" component={Lunch} />
       <HomeStack.Screen
@@ -40,7 +41,8 @@ const SettingsStackScreen = () => {
       <SettingsStack.Screen
         name="Settings"
         component={Settings}
-        option={{
+        options={{
+          headerShown: false,
           title: 'Settings',
           headerTitleStyle: { alignSelf: 'center' },
         }}
@@ -55,8 +57,9 @@ const MyMenuStackScreen = () => {
       <MyMenuStack.Screen
         name="MyMenu"
         component={MyMenu}
-        option={{
+        options={{
           title: 'MyMenu',
+          headerShown: false,
           headerTitleStyle: { alignSelf: 'center' },
         }}
       />

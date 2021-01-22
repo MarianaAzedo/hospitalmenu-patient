@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import style from '../../../StyleSheet.css.js';
 import { removeUser } from '../../../services/users';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
+  console.log('Navigation', navigation);
   const handleLogout = () => {
     removeUser();
   };

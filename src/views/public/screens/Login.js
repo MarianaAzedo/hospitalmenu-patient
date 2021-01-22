@@ -1,14 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import style from '../../../StyleSheet.css.js';
 import api from '../../../services/api';
-import { storeDataUser } from '../../../services/users';
+import { storeDataUser, hasUser } from '../../../services/users';
 
-const Login = () => {
-  const [name, setName] = useState('Alberto Ribeiro');
-  const [password, setPassword] = useState('pass1234');
+const Login = ({ navigation, route }) => {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const keepInLoginScreen = route.params?.keepInLoginScreen ?? false;
+  const [userHasLoggedIn, setUserHasLoggedIn] = useState(false);
 
+  useEffect(() => {
+    if (!keepInLoginScreen) {
+      hasUser().then(
+        (userLogged) => userLogged && navigation.navigate('Private'),
+      );
+    }
+    return () => {};
+  }, [userHasLoggedIn]);
+
+  //Post Method
   const authenticate = () => {
     api
       .POST('/authenticate', {
@@ -17,7 +29,10 @@ const Login = () => {
       })
       .then((response) => response.json())
       .then((user) => {
-        if (user[0]) storeDataUser(user[0]);
+        if (user[0]) {
+          storeDataUser(user[0]);
+          setUserHasLoggedIn(true);
+        }
       });
   };
   return (
@@ -26,6 +41,7 @@ const Login = () => {
       <Text style={style.title}>Login</Text>
       <StatusBar style="auto" />
       <View style={style.inputView}>
+        {/* Imput Name */}
         <TextInput
           style={style.TextInput}
           placeholder="Name."
@@ -35,6 +51,7 @@ const Login = () => {
       </View>
 
       <View style={style.inputView}>
+        {/* Imput Password */}
         <TextInput
           style={style.TextInput}
           placeholder="Password."

@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { hasUser } from './src/services/users';
+import { createStackNavigator } from '@react-navigation/stack';
 import PrivateStack from './src/views/private/PrivateStack';
-import PublicStack from './src/views/public/PublicStack';
+import Login from './src/views/public/screens/Login';
 
+const Stack = createStackNavigator();
+
+//Navigation between screens
 export default function App() {
-  const [userHasLoggedIn, setUserHasLoggedIn] = useState(false);
-  useEffect(
-    () => hasUser().then((userLogged) => setUserHasLoggedIn(userLogged)),
-    [],
-  );
-
   return (
     <NavigationContainer>
-      {userHasLoggedIn ? PrivateStack() : PublicStack()}
+      <Stack.Navigator initialRouteName={'Login'}>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: 'Login',
+            headerTitleStyle: { alignSelf: 'center' },
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Private"
+          component={PrivateStack}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

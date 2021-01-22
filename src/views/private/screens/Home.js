@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { accessibilityLabel, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import style from '../../../StyleSheet.css.js';
 import day from '../../../services/date.js';

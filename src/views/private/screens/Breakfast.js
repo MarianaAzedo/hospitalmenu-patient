@@ -18,34 +18,34 @@ const Breakfast = () => {
 
   //post method
   const handleSubmit = () => {
-    api
-      .POST('/menuroom', {
-        breakfast: {
-          juice,
-          fruit,
-          cereals,
-          hotbreakfast,
-          breads,
-          spreads,
-          hotdrinks,
-        },
-        userid: user.name,
-        roomid: user.room,
-      })
-      .then((response) => response.json())
-      .then((path) => {
-        console.log(path);
-      });
+    api.POST('/menuroom', {
+      breakfast: {
+        juice,
+        fruit,
+        cereals,
+        hotbreakfast,
+        breads,
+        spreads,
+        hotdrinks,
+      },
+      userid: user.name,
+      roomid: user.room,
+    });
   };
-
   //get method
   useEffect(() => {
-    api
-      .GET('/menu')
-      .then((response) => response.json())
-      .then((json) => setMenu(json));
+    const setUserMenu = (user) => {
+      const allergens = user && user.allergens && user.allergens.join(',');
+      api
+        .GET(`/menu/${allergens}/filter`)
+        .then((response) => response.json())
+        .then((json) => setMenu(json));
+    };
 
-    getUser().then((userPromise) => setUser(userPromise));
+    getUser().then((userPromise) => {
+      setUser(userPromise);
+      setUserMenu(userPromise);
+    });
   }, []);
 
   return (
