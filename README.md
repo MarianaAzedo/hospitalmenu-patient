@@ -7,7 +7,7 @@
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Changelog](#Changelog)
+- [Roadmap](#Roadmap)
 - [Author info](#Author_info)
 
 ## General info
