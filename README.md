@@ -7,7 +7,6 @@
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Example usage](#Example_usage)
 - [Changelog](#Changelog)
 - [Author info](#Author_info)
 
@@ -42,10 +41,6 @@ Clone this repository using git clone "https://github.com/MarianaAzedo/hospitalm
 Move to the appropriate directory: cd hospitalmenu.
 Run npm install to install dependencies.
 Run npm start, it will open the browser when ready.
-
-## Example_usage
-
-Endpoint:
 
 ## Roadmap
 
